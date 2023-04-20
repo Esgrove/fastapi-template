@@ -22,8 +22,9 @@ Update dependencies:
 poetry update
 ```
 
+Adding dependencies:
+
 ```shell
-poetry new fastapi-demo
 poetry add fastapi uvicorn
 poetry add pytest --group test
 poetry add black pyupgrade ruff --group dev

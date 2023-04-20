@@ -67,6 +67,8 @@ which is used to render the documentation:
 - [Swagger UI](https://github.com/swagger-api/swagger-ui) documentation is available at <http://127.0.0.1:8000/docs>
 - [ReDoc](https://github.com/Redocly/redoc) documentation is available at <http://127.0.0.1:8000/redoc>
 
+**Note:** The server needs to be running for these to work. With Docker, you can drop the port number :wink:
+
 ## Code formatting and linting
 
 Code formatting with [Black](https://github.com/psf/black).

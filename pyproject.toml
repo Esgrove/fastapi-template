@@ -10,6 +10,7 @@ packages = [{ include = "app" }]
 python = "^3.11"
 fastapi = "^0.95.1"
 uvicorn = "^0.21.1"
+mangum = "^0.17.0"
 
 [tool.poetry.group.test.dependencies]
 pytest = "^7.3.1"

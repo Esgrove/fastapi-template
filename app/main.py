@@ -1,5 +1,7 @@
 import uvicorn
 from fastapi import FastAPI
+from mangum import Mangum
+from pydantic import BaseModel
 
 app = FastAPI()
 
@@ -12,3 +14,6 @@ async def main_route():
 def start():
     """Helper for starting server with `poetry run start`."""
     uvicorn.run("app.main:app", reload=True)
+
+
+handler = Mangum(app, lifespan="off")

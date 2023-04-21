@@ -49,6 +49,12 @@ poetry run pytest --cov=app tests/
 Start a development server locally:
 
 ```shell
+peotry run start
+```
+
+Or:
+
+```shell
 poetry run uvicorn app.main:app --reload --host localhost --port 8000
 ```
 

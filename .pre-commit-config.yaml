@@ -16,12 +16,21 @@ repos:
       - id: end-of-file-fixer
       - id: mixed-line-ending
       - id: trailing-whitespace
+
+  - repo: https://github.com/asottile/pyupgrade
+    rev: v3.6.0
+    hooks:
+      - id: pyupgrade
+        name: python pyupgrade
+        args: [--py311-plus]
+
   - repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: "v0.0.263"
+    rev: v0.0.272
     hooks:
       - id: ruff
         name: python ruff
         args: [--fix, --exit-non-zero-on-fix]
+
   - repo: https://github.com/psf/black
     rev: 23.3.0
     hooks:

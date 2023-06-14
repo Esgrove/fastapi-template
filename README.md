@@ -49,7 +49,7 @@ poetry run pytest --cov=app tests/
 Start a development server locally:
 
 ```shell
-peotry run start
+poetry run start
 ```
 
 Or:
@@ -63,6 +63,13 @@ poetry run uvicorn app.main:app --reload --host localhost --port 8000
 ```shell
 docker build -t runtime .
 docker run -d --name fastapi -p 80:80 runtime
+```
+
+### Test API locally
+
+```shell
+curl -s http://127.0.0.1:8000 | jq .
+curl -s http://127.0.0.1:8000/items/ | jq .
 ```
 
 ### Interactive API docs

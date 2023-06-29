@@ -95,6 +95,7 @@ Usage:
 
 ```shell
 black .
+isort .
 ruff --fix .
 ```
 

@@ -17,15 +17,8 @@ repos:
       - id: mixed-line-ending
       - id: trailing-whitespace
 
-  - repo: https://github.com/asottile/pyupgrade
-    rev: v3.6.0
-    hooks:
-      - id: pyupgrade
-        name: python pyupgrade
-        args: [--py311-plus]
-
   - repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: v0.0.272
+    rev: v0.0.275
     hooks:
       - id: ruff
         name: python ruff

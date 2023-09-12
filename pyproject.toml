@@ -21,7 +21,7 @@ pytest-cov = "^4.0.0"
 
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.0.276"
-black = "^23.3.0"
+black = "^23.9.1"
 pyupgrade = "^3.8.0"
 
 [tool.poetry.scripts]

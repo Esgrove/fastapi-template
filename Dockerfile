@@ -41,3 +41,6 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
 # this will tell Uvicorn to trust the headers sent by that proxy telling it that the application is running behind HTTPS.
 # https://fastapi.tiangolo.com/deployment/docker/
 # CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80", "--proxy-headers"]
+
+HEALTHCHECK --interval=1m --timeout=3s \
+    CMD curl -f http://localhost/ || exit 1

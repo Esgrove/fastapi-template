@@ -69,7 +69,9 @@ docker run -d --name fastapi -p 80:80 runtime
 
 ```shell
 curl -s http://127.0.0.1:8000 | jq .
+curl -s http://127.0.0.1:8000/items/1234 | jq .
 curl -s http://127.0.0.1:8000/items/ | jq .
+curl -s http://127.0.0.1:8000/items/?limit=8 | jq .
 ```
 
 ### Interactive API docs
@@ -121,3 +123,4 @@ pre-commit run --all-files
 ## TODO
 
 - Setup [coveralls](https://coveralls.io/)
+- Better API examples

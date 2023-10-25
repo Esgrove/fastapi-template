@@ -19,7 +19,7 @@ if [ -z "$(docker ps -q --filter "name=fastapi")" ]; then
     docker run -d --name fastapi -p 80:80 runtime
 
     echo "Waiting for container to start..."
-    while ! curl -f http://127.0.0.1 > /dev/null; do
+    while ! curl -fs http://127.0.0.1 > /dev/null; do
         sleep 1
     done
     print_green "API is running"

@@ -4,6 +4,8 @@ set -eo pipefail
 REPO_ROOT=$(git rev-parse --show-toplevel || (cd "$(dirname "${BASH_SOURCE[0]}")" && pwd))
 export REPO_ROOT
 
+VERSION_FILE="$REPO_ROOT/app/version.py"
+
 # Check platform
 case "$(uname -s)" in
     "Darwin")
@@ -52,6 +54,15 @@ print_error_and_exit() {
     exit "${2:-1}"
 }
 
+# Read Python project version number from pyproject.toml
+get_pyproject_version_number() {
+    # note: `tomllib` requires Python 3.11+
+    python -c 'with open("pyproject.toml", "rb") as f: \
+                import tomllib; \
+                project = tomllib.load(f); \
+                print(project["tool"]["poetry"]["version"])'
+}
+
 # if DRYRUN or DRY_RUN has been set, only print commands instead of running them
 run_command() {
     if [ "$DRY_RUN" = true ] || [ "$DRYRUN" = true ]; then
@@ -60,4 +71,36 @@ run_command() {
         echo "Running: $*"
         "$@"
     fi
+}
+
+# Set variables BUILD_TIME, GIT_HASH, and GIT_BRANCH
+set_version_info() {
+    BUILD_TIME=$(date +"%Y-%m-%d_%H%M")
+    GIT_HASH=$(git -C "$REPO_ROOT" rev-parse --short HEAD)
+    GIT_BRANCH=$(git -C "$REPO_ROOT" branch --show-current)
+    export BUILD_TIME
+    export GIT_HASH
+    export GIT_BRANCH
+}
+
+# Update project version information file
+update_version_information() {
+    print_yellow "Updating version file: $VERSION_FILE"
+    set_version_info
+    VERSION_NUMBER="$(get_pyproject_version_number)"
+    echo "DATE:    $BUILD_TIME"
+    echo "BRANCH:  $GIT_BRANCH"
+    echo "COMMIT:  $GIT_HASH"
+    echo "VERSION: $VERSION_NUMBER"
+    {
+        echo '"""'
+        echo 'Version information definitions'
+        echo 'Akseli Lukkarila'
+        echo '2019-2023'
+        echo '"""'
+        echo "BRANCH = \"$GIT_BRANCH\""
+        echo "COMMIT = \"$GIT_HASH\""
+        echo "DATE = \"$BUILD_TIME\""
+        echo "VERSION_NUMBER = \"$VERSION_NUMBER\""
+    } > "$VERSION_FILE"
 }

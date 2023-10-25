@@ -12,6 +12,7 @@ cd "$REPO_ROOT" > /dev/null
 
 if [ -z "$(docker ps -q --filter "name=fastapi")" ]; then
     print_magenta "Building Docker image..."
+    update_version_information
     docker build -t runtime .
 
     print_magenta "Running API..."
@@ -22,8 +23,12 @@ fi
 
 echo "http://127.0.0.1"
 curl -s http://127.0.0.1 | jq .
+echo "http://127.0.0.1/items/123"
+curl -s http://127.0.0.1/items/1234 | jq .
 echo "http://127.0.0.1/items/"
 curl -s http://127.0.0.1/items/ | jq .
+echo "http://127.0.0.1/items/?limit=8"
+curl -s http://127.0.0.1/items/?limit=8 | jq .
 
 if [ "$PLATFORM" = mac ]; then
     print_magenta "Opening API docs..."

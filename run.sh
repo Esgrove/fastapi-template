@@ -28,22 +28,13 @@ else
 fi
 
 print_magenta "Testing routes..."
-echo "http://127.0.0.1"
-curl -s http://127.0.0.1 | jq .
-
-echo "http://127.0.0.1/version/"
-curl -s http://127.0.0.1/version/ | jq .
-
-echo "http://127.0.0.1/items/123"
-curl -s http://127.0.0.1/items/1234 | jq .
-
-echo "http://127.0.0.1/items/"
-curl -s http://127.0.0.1/items/ | jq .
-
-echo "http://127.0.0.1/items/?limit=8"
-curl -s http://127.0.0.1/items/?limit=8 | jq .
+test_route "http://127.0.0.1"
+test_route "http://127.0.0.1/version/"
+test_route "http://127.0.0.1/items/1234"
+test_route "http://127.0.0.1/items/"
+test_route "http://127.0.0.1/items/?skip=3&limit=5"
 
 if [ "$PLATFORM" = mac ]; then
     print_magenta "Opening API docs..."
-    run_command open http://127.0.0.1/redoc
+    open http://127.0.0.1/redoc
 fi

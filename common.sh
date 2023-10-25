@@ -63,14 +63,10 @@ get_pyproject_version_number() {
                 print(project["tool"]["poetry"]["version"])'
 }
 
-# if DRYRUN or DRY_RUN has been set, only print commands instead of running them
-run_command() {
-    if [ "$DRY_RUN" = true ] || [ "$DRYRUN" = true ]; then
-        echo "DRYRUN: $*"
-    else
-        echo "Running: $*"
-        "$@"
-    fi
+# Test api route
+test_route() {
+    echo "Route: $*"
+    curl -s "$@" | jq .
 }
 
 # Set variables BUILD_TIME, GIT_HASH, and GIT_BRANCH

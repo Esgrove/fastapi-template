@@ -1,12 +1,12 @@
 import random
 
 import uvicorn
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse
 from mangum import Mangum
 from pydantic import BaseModel
 
-from version import BRANCH, COMMIT, DATE, VERSION_NUMBER
+from app.version import BRANCH, COMMIT, DATE, VERSION_NUMBER
 
 
 app = FastAPI()
@@ -18,7 +18,15 @@ class Message(BaseModel):
 
 class Item(BaseModel):
     name: str
-    item_id: int = random.randint(1000, 9999)
+    item_id: int
+
+    def __init__(self, **data):
+        if 'item_id' not in data:
+            # Assign random id if it was not specified
+            data['item_id'] = random.randint(1000, 9999)
+
+        super().__init__(**data)
+
 
 class VersionInfo(BaseModel):
     branch: str = BRANCH
@@ -47,6 +55,9 @@ async def status_route() -> VersionInfo:
 @app.get("/items/{item_id}")
 async def read_item(item_id: int) -> Item:
     """Return item for given id."""
+    if item_id < 1000 or item_id > 9999:
+        raise HTTPException(status_code=404, detail="Item not found")
+
     return Item(name="test", item_id=item_id)
 
 

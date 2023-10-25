@@ -1,4 +1,4 @@
-name: Python Black
+name: Python isort
 
 # Run either when pushing directly to main/master or in a PR targeting main/master
 on:
@@ -8,20 +8,20 @@ on:
       - main
     paths:
       - "**.py"
-      - ".github/workflows/black.yml"
+      - ".github/workflows/isort.yml"
   pull_request:
     branches:
       - master
       - main
     paths:
       - "**.py"
-      - ".github/workflows/black.yml"
+      - ".github/workflows/isort.yml"
 
-# https://github.com/psf/black
+# https://github.com/marketplace/actions/python-isort
 jobs:
   format:
     runs-on: ubuntu-latest
-    name: Black
+    name: isort
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -31,7 +31,5 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: black
-        uses: psf/black@stable
-        with:
-          options: "--check --verbose --diff --color"
+      - name: isort
+        uses: isort/isort-action@v1.1.0

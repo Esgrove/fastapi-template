@@ -1,4 +1,4 @@
-name: Ruff
+name: Python Ruff
 
 # Run either when pushing directly to main/master or in a PR targeting main/master
 on:
@@ -8,19 +8,22 @@ on:
       - main
     paths:
       - "**.py"
+      - ".github/workflows/ruff.yml"
   pull_request:
     branches:
       - master
       - main
     paths:
       - "**.py"
+      - ".github/workflows/ruff.yml"
 
+# https://github.com/chartboost/ruff-action
 jobs:
   lint:
     runs-on: ubuntu-latest
     name: Ruff
     steps:
-      - name: Check out source repository
+      - name: Check out repository
         uses: actions/checkout@v4
 
       - name: Set up Python environment
@@ -28,6 +31,5 @@ jobs:
         with:
           python-version: "3.11"
 
-      # https://github.com/chartboost/ruff-action
       - name: ruff
         uses: chartboost/ruff-action@v1

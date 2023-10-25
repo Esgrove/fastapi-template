@@ -13,8 +13,8 @@ def test_root():
     assert data.get("message")
 
 
-def test_status():
-    response = client.get("/status/")
+def test_version():
+    response = client.get("/version/")
     assert response.status_code == 200
     data = response.json()
 

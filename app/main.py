@@ -43,12 +43,12 @@ async def favicon() -> FileResponse:
 @app.get("/")
 async def root_route() -> Message:
     """Show hello message."""
-    return Message(message=f"Hello World! FastAPI example {VERSION_NUMBER}")
+    return Message(message=f"FastAPI example {VERSION_NUMBER}")
 
 
-@app.get("/status/")
-async def status_route() -> VersionInfo:
-    """Return status information."""
+@app.get("/version/")
+async def version_route() -> VersionInfo:
+    """Return API version information."""
     return VersionInfo()
 
 

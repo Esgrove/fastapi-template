@@ -19,5 +19,5 @@ def test_get_item():
 
 
 def test_read_items():
-    response = client.get(f"/items/")
+    response = client.get("/items/")
     assert response.status_code == 200

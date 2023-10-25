@@ -8,7 +8,6 @@ from pydantic import BaseModel
 
 from app.version import BRANCH, COMMIT, DATE, VERSION_NUMBER
 
-
 app = FastAPI()
 
 
@@ -21,9 +20,9 @@ class Item(BaseModel):
     item_id: int
 
     def __init__(self, **data):
-        if 'item_id' not in data:
+        if "item_id" not in data:
             # Assign random id if it was not specified
-            data['item_id'] = random.randint(1000, 9999)
+            data["item_id"] = random.randint(1000, 9999)
 
         super().__init__(**data)
 

@@ -4,6 +4,19 @@ set -eo pipefail
 REPO_ROOT=$(git rev-parse --show-toplevel || (cd "$(dirname "${BASH_SOURCE[0]}")" && pwd))
 export REPO_ROOT
 
+# Check platform
+case "$(uname -s)" in
+    "Darwin")
+        PLATFORM="mac"
+        ;;
+    "MINGW"*)
+        PLATFORM="windows"
+        ;;
+    *)
+        PLATFORM="linux"
+        ;;
+esac
+
 # Print a message with green color
 print_green() {
     printf "\e[1;49;32m%s\e[0m\n" "$1"
@@ -37,4 +50,14 @@ print_error_and_exit() {
     print_error "$1"
     # use exit code if given as argument, otherwise default to 1
     exit "${2:-1}"
+}
+
+# if DRYRUN or DRY_RUN has been set, only print commands instead of running them
+run_command() {
+    if [ "$DRY_RUN" = true ] || [ "$DRYRUN" = true ]; then
+        echo "DRYRUN: $*"
+    else
+        echo "Running: $*"
+        "$@"
+    fi
 }

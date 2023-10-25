@@ -11,7 +11,7 @@ ENV PYTHONUNBUFFERED=1 \
     POETRY_HOME="/opt/poetry" \
     POETRY_VIRTUALENVS_IN_PROJECT=true \
     POETRY_NO_INTERACTION=1 \
-    POETRY_VERSION=1.4.2 \
+    POETRY_VERSION=1.6.1 \
     PATH="/opt/poetry/bin:$PATH"
 
 WORKDIR /fastapi_app

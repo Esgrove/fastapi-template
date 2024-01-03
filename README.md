@@ -3,7 +3,8 @@
 [![Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 
-[FastAPI](https://github.com/tiangolo/fastapi) project template.
+[FastAPI](https://github.com/tiangolo/fastapi) REST API project template and example.
+Uses [Poetry](https://github.com/python-poetry/poetry) dependency management.
 
 ## Dependencies
 
@@ -30,6 +31,10 @@ poetry add fastapi uvicorn
 poetry add pytest --group test
 poetry add black pyupgrade ruff --group dev
 ```
+
+## Quick start
+
+Use the provided shell scripts to easily run tests and the API locally with Docker with `./test.sh` and `./run.sh`.
 
 ## Tests
 

@@ -63,12 +63,6 @@ get_pyproject_version_number() {
                 print(project["tool"]["poetry"]["version"])'
 }
 
-# Test api route
-test_route() {
-    echo "Route: $*"
-    curl -s "$@" | jq .
-}
-
 # Set variables BUILD_TIME, GIT_HASH, and GIT_BRANCH
 set_version_info() {
     BUILD_TIME=$(date +"%Y-%m-%d_%H%M")

@@ -27,6 +27,12 @@ else
     echo "Docker image is running, skipping build..."
 fi
 
+# Helper function to call api route
+test_route() {
+    echo "Route: $*"
+    curl -s "$@" | jq .
+}
+
 print_magenta "Testing routes..."
 test_route "http://127.0.0.1"
 test_route "http://127.0.0.1/version/"

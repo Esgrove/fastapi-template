@@ -11,7 +11,7 @@ ENV PYTHONUNBUFFERED=1 \
     POETRY_HOME="/opt/poetry" \
     POETRY_VIRTUALENVS_IN_PROJECT=true \
     POETRY_NO_INTERACTION=1 \
-    POETRY_VERSION=1.6.1 \
+    POETRY_VERSION=1.7.1 \
     PATH="/opt/poetry/bin:$PATH"
 
 WORKDIR /fastapi_app
@@ -22,6 +22,7 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN curl -sSL https://install.python-poetry.org | \
     POETRY_HOME=${POETRY_HOME} python3 - --version ${POETRY_VERSION} && \
     chmod a+x /opt/poetry/bin/poetry
+RUN poetry --version
 
 # Install dependencies
 COPY . ./

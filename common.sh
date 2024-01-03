@@ -19,6 +19,8 @@ case "$(uname -s)" in
         ;;
 esac
 
+export PLATFORM
+
 # Print a message with green color
 print_green() {
     printf "\e[1;49;32m%s\e[0m\n" "$1"
@@ -88,6 +90,8 @@ update_version_information() {
         echo 'Akseli Lukkarila'
         echo '2019-2023'
         echo '"""'
+        echo ""
+        echo "# CREATED BY SCRIPT. DO NOT MODIFY MANUALLY."
         echo "BRANCH = \"$GIT_BRANCH\""
         echo "COMMIT = \"$GIT_HASH\""
         echo "DATE = \"$BUILD_TIME\""

@@ -1,3 +1,9 @@
+"""
+FastAPI template and example.
+Akseli Lukkarila
+2019-2023
+"""
+
 import random
 
 import uvicorn
@@ -12,22 +18,28 @@ app = FastAPI()
 
 
 class Message(BaseModel):
+    """Simple return message."""
+
     message: str
 
 
 class Item(BaseModel):
+    """Basic item with name and id."""
+
     name: str
     item_id: int
 
+    # Assign random id if it was not specified
     def __init__(self, **data):
         if "item_id" not in data:
-            # Assign random id if it was not specified
             data["item_id"] = random.randint(1000, 9999)
 
         super().__init__(**data)
 
 
 class VersionInfo(BaseModel):
+    """Version information message."""
+
     branch: str = BRANCH
     commit: str = COMMIT
     date: str = DATE
@@ -36,6 +48,10 @@ class VersionInfo(BaseModel):
 
 @app.get("/favicon.ico", include_in_schema=False)
 async def favicon() -> FileResponse:
+    """
+    Provide favicon.
+    Not really needed but here to silence a warning.
+    """
     return FileResponse("favicon.ico")
 
 

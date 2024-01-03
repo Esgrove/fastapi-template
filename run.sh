@@ -10,6 +10,10 @@ source "$DIR/common.sh"
 
 cd "$REPO_ROOT" > /dev/null
 
+if ! docker info > /dev/null 2>&1; then
+    print_error_and_exit "Docker does not seem to be running. Start Docker first..."
+fi
+
 if [ -z "$(docker ps -q --filter "name=fastapi")" ]; then
     print_magenta "Building Docker image..."
     update_version_information

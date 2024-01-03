@@ -9,6 +9,8 @@ on:
     paths:
       - "**.py"
       - ".github/workflows/isort.yml"
+      - "poetry.lock"
+      - "pyproject.toml"
   pull_request:
     branches:
       - master
@@ -16,6 +18,8 @@ on:
     paths:
       - "**.py"
       - ".github/workflows/isort.yml"
+      - "poetry.lock"
+      - "pyproject.toml"
 
 # https://github.com/marketplace/actions/python-isort
 jobs:

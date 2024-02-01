@@ -9,7 +9,7 @@ packages = [{ include = "app" }]
 [tool.poetry.dependencies]
 python = "^3.11"
 fastapi = { version = "^0.109.0", extras = ["all"] }
-uvicorn = "^0.24.0"
+uvicorn = "^0.27.0"
 mangum = "^0.17.0"
 pydantic = "^2.0.2"
 

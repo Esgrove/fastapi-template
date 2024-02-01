@@ -25,7 +25,6 @@ on:
 jobs:
   lint:
     runs-on: ubuntu-latest
-    name: Ruff
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -35,5 +34,7 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: ruff
+      - name: Ruff lint
         uses: chartboost/ruff-action@v1
+        with:
+          args: check --verbose

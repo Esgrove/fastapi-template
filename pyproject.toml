@@ -43,6 +43,8 @@ extend-exclude = '''venv*'''
 include = ["*.py", "*.pyi", "**/pyproject.toml"]
 target-version = "py311"
 line-length = 120
+
+[tool.ruff.lint]
 ignore = []
 per-file-ignores = {}
 # https://docs.astral.sh/ruff/rules/
@@ -123,7 +125,7 @@ exclude = [
     "venv*",
 ]
 
-[tool.ruff.isort]
+[tool.ruff.lint.isort]
 # https://beta.ruff.rs/docs/settings/#isort
 combine-as-imports = true
 lines-between-types = 1

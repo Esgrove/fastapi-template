@@ -29,7 +29,7 @@ Adding dependencies:
 ```shell
 poetry add fastapi uvicorn
 poetry add pytest --group test
-poetry add black pyupgrade ruff --group dev
+poetry add black isort ruff --group dev
 ```
 
 ## Quick start

@@ -9,17 +9,17 @@ VERSION_FILE="$REPO_ROOT/app/version.py"
 # Check platform
 case "$(uname -s)" in
     "Darwin")
-        PLATFORM="mac"
+        BASH_PLATFORM="mac"
         ;;
     "MINGW"*)
-        PLATFORM="windows"
+        BASH_PLATFORM="windows"
         ;;
     *)
-        PLATFORM="linux"
+        BASH_PLATFORM="linux"
         ;;
 esac
 
-export PLATFORM
+export BASH_PLATFORM
 
 # Print a message with green color
 print_green() {

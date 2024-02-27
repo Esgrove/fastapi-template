@@ -85,8 +85,21 @@ if ! curl -s -o /dev/null -w "%{http_code}" "http://127.0.0.1:$PORT" | grep -q '
 fi
 
 get "http://127.0.0.1:$PORT"
-get "http://127.0.0.1:$PORT/version"
-get "http://127.0.0.1:$PORT/items/1234"
+get "http://127.0.0.1:$PORT/version/"
 get "http://127.0.0.1:$PORT/items/"
+get "http://127.0.0.1:$PORT/items/?skip=3&limit=3"
+get "http://127.0.0.1:$PORT/items/1234"
+get "http://127.0.0.1:$PORT/items/1"
+
+# this route does not exist
 get "http://127.0.0.1:$PORT/user?username=esgrove"
-get "http://127.0.0.1:$PORT/items/?skip=3&limit=5"
+
+post "http://127.0.0.1:$PORT/items/" '{"name":"esgrove","item_id":1234}'
+post "http://127.0.0.1:$PORT/items/" '{"name":"another"}'
+
+get "http://127.0.0.1:$PORT/items/"
+
+delete "http://127.0.0.1:$PORT/items/1234"
+delete "http://127.0.0.1:$PORT/items/1000"
+
+get "http://127.0.0.1:$PORT/items/"

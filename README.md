@@ -141,4 +141,4 @@ pre-commit run --all-files
 ## TODO
 
 - Setup [coveralls](https://coveralls.io/)
-- Better API usage examples with POST routes as well
+- Better API usage examples

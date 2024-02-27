@@ -142,3 +142,4 @@ pre-commit run --all-files
 
 - Setup [coveralls](https://coveralls.io/)
 - Better API usage examples
+- Improve test cases

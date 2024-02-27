@@ -11,7 +11,7 @@ ENV PYTHONUNBUFFERED=1 \
     POETRY_HOME="/opt/poetry" \
     POETRY_VIRTUALENVS_IN_PROJECT=true \
     POETRY_NO_INTERACTION=1 \
-    POETRY_VERSION=1.7.1 \
+    POETRY_VERSION=1.8.1 \
     PATH="/opt/poetry/bin:$PATH"
 
 WORKDIR /fastapi_app
@@ -44,4 +44,4 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
 # CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80", "--proxy-headers"]
 
 HEALTHCHECK --interval=1m --timeout=3s \
-    CMD curl -f http://localhost/ || exit 1
+    CMD curl -fs http://localhost/ || exit 1

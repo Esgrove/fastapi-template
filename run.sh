@@ -40,18 +40,8 @@ else
     echo "Docker image is running, skipping build..."
 fi
 
-# Helper function to call api route
-test_route() {
-    echo "Route: $*"
-    curl -s "$@" | jq .
-}
-
 print_magenta "Testing routes..."
-test_route "http://127.0.0.1"
-test_route "http://127.0.0.1/version/"
-test_route "http://127.0.0.1/items/1234"
-test_route "http://127.0.0.1/items/"
-test_route "http://127.0.0.1/items/?skip=3&limit=5"
+PORT=80 ./test-routes.sh
 
 if [ "$BASH_PLATFORM" = mac ]; then
     print_magenta "Opening API docs..."

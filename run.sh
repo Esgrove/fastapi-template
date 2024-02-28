@@ -41,7 +41,7 @@ else
 fi
 
 print_magenta "Testing routes..."
-PORT=80 ./test-routes.sh
+./test-routes.sh -p 80
 
 if [ "$BASH_PLATFORM" = mac ]; then
     print_magenta "Opening API docs..."

@@ -99,7 +99,11 @@ post "http://127.0.0.1:$PORT/items/" '{"name":"another"}'
 
 get "http://127.0.0.1:$PORT/items/"
 
-delete "http://127.0.0.1:$PORT/items/1234"
-delete "http://127.0.0.1:$PORT/items/1000"
+delete "http://127.0.0.1:$PORT/admin/items/1234"
+delete "http://127.0.0.1:$PORT/admin/items/1000"
+
+get "http://127.0.0.1:$PORT/items/"
+
+delete "http://127.0.0.1:$PORT/admin/clear_items/"
 
 get "http://127.0.0.1:$PORT/items/"

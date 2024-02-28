@@ -1,5 +1,7 @@
 import random
+from typing import Self
 
+from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 
 try:
@@ -14,6 +16,22 @@ class MessageResponse(BaseModel):
     """Simple return message."""
 
     message: str
+
+    @classmethod
+    def new(cls, message: str) -> Self:
+        """
+        A bit of Rust inspiration in Python:
+        Factory method to create a `MessageResponse`,
+        without needing to specify the `message` parameter name.
+        So instead of `MessageResponse(message=message)`,
+        one can use `MessageResponse.new(message)`
+        """
+        return cls(message=message)
+
+
+class ApiError(Exception):
+    def __init__(self, name: str):
+        self.name = name
 
 
 class Item(BaseModel):
@@ -42,3 +60,9 @@ class VersionInfo(BaseModel):
 
 # Simulated database
 DATABASE: dict[int, Item] = {}
+
+
+def message_response(status_code: int, message: str) -> JSONResponse:
+    """Helper function to create a JSONResponse with a MessageResponse model."""
+    response_content = MessageResponse(message=message).dict()
+    return JSONResponse(status_code=status_code, content=response_content)

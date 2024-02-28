@@ -1,8 +1,8 @@
-from fastapi import APIRouter, HTTPException
-from starlette.responses import FileResponse
+from fastapi import APIRouter, status
+from fastapi.responses import FileResponse, JSONResponse
 
 try:
-    from app.models import API_NAME, DATABASE, Item, MessageResponse, VersionInfo
+    from app.models import API_NAME, DATABASE, Item, MessageResponse, VersionInfo, message_response
     from app.version import VERSION_NUMBER
 except ModuleNotFoundError:
     from models import API_NAME, DATABASE, Item, MessageResponse, VersionInfo
@@ -23,7 +23,7 @@ async def favicon() -> FileResponse:
 @router.get("/")
 async def root_route() -> MessageResponse:
     """Show a simple info message."""
-    return MessageResponse(message=f"{API_NAME} {VERSION_NUMBER}")
+    return MessageResponse.new(f"{API_NAME} {VERSION_NUMBER}")
 
 
 @router.get("/version/")
@@ -43,24 +43,38 @@ async def list_items(skip: int = 0, limit: int = 100) -> list[Item]:
     return list(DATABASE.values())[skip : skip + limit]
 
 
-@router.get("/items/{item_id}")
-async def read_item(item_id: int) -> Item:
+@router.get(
+    "/items/{item_id}",
+    response_model=Item | MessageResponse,
+    responses={
+        400: {"model": MessageResponse, "description": "Invalid item ID"},
+        404: {"model": MessageResponse, "description": "Item not found"},
+    },
+)
+async def read_item(item_id: int):
     """Return item for given id."""
     if item_id < 1000 or item_id > 9999:
-        raise HTTPException(status_code=400, detail="Item ID must be be between 1000 and 9999")
+        return message_response(400, "Item ID must be be between 1000 and 9999")
 
     if item_id not in DATABASE:
-        raise HTTPException(status_code=404, detail=f"Item ID {item_id} does not exist")
+        return message_response(404, f"Item ID {item_id} does not exist")
 
-    return Item(name="test", item_id=item_id)
+    return DATABASE.get(item_id)
 
 
-@router.post("/items/")
-async def create_item(item: Item) -> Item:
+@router.post(
+    "/items/",
+    status_code=status.HTTP_201_CREATED,
+    response_model=Item | MessageResponse,
+    responses={409: {"model": MessageResponse, "description": "Item already exists"}},
+)
+async def create_item(item: Item):
     """Add item to database."""
     # Check if the item id already exists
     if item.item_id in DATABASE:
-        raise HTTPException(status_code=409, detail="Item with this ID already exists")
+        # Using `message_response` would simplify creating the JSONResponse,
+        # but leaving this here to show it directly.
+        return JSONResponse(status_code=409, content=MessageResponse(message="Item with this ID already exists").dict())
 
     DATABASE[item.item_id] = item
     return item

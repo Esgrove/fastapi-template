@@ -48,6 +48,7 @@ app = FastAPI()
 app.include_router(router)
 app.include_router(admin_router, prefix="/admin")
 
+
 # Mangum is an adapter for running ASGI applications in AWS Lambda
 # https://mangum.io/
 # handler = Mangum(app, lifespan="off")

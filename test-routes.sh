@@ -97,6 +97,7 @@ get "http://127.0.0.1:$PORT/user?username=esgrove"
 post "http://127.0.0.1:$PORT/items/" '{"name":"esgrove","item_id":1234}'
 post "http://127.0.0.1:$PORT/items/" '{"name":"another"}'
 
+get "http://127.0.0.1:$PORT/items/1234"
 get "http://127.0.0.1:$PORT/items/"
 
 delete "http://127.0.0.1:$PORT/admin/items/1234"

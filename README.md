@@ -4,15 +4,16 @@
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 
 [FastAPI](https://github.com/tiangolo/fastapi) REST API project template and example.
-Uses [Poetry](https://github.com/python-poetry/poetry) dependency management.
+Uses [Poetry](https://github.com/python-poetry/poetry) for project and dependency management.
 
 ## Dependencies
 
-Requires Python 3.11+
+Requires:
 
-Dependencies are managed by [Poetry](https://python-poetry.org/docs/).
+- Python 3.11+
+- Scripts use [jq](https://jqlang.github.io/jq/) and Docker but not strictly needed
 
-Install dependencies:
+Install Python dependencies:
 
 ```shell
 poetry install

@@ -2,7 +2,10 @@ import random
 
 from pydantic import BaseModel
 
-from app.version import BRANCH, COMMIT, DATE, VERSION_NUMBER
+try:
+    from app.version import BRANCH, COMMIT, DATE, VERSION_NUMBER
+except ModuleNotFoundError:
+    from version import BRANCH, COMMIT, DATE, VERSION_NUMBER
 
 API_NAME = "FastAPI example"
 

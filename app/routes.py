@@ -1,8 +1,12 @@
 from fastapi import APIRouter, HTTPException
 from starlette.responses import FileResponse
 
-from app.models import API_NAME, DATABASE, Item, MessageResponse, VersionInfo
-from app.version import VERSION_NUMBER
+try:
+    from app.models import API_NAME, DATABASE, Item, MessageResponse, VersionInfo
+    from app.version import VERSION_NUMBER
+except ModuleNotFoundError:
+    from models import API_NAME, DATABASE, Item, MessageResponse, VersionInfo
+    from version import VERSION_NUMBER
 
 router = APIRouter()
 

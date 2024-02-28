@@ -1,6 +1,9 @@
 from fastapi import APIRouter, HTTPException
 
-from app.models import DATABASE, MessageResponse
+try:
+    from app.models import DATABASE, MessageResponse
+except ModuleNotFoundError:
+    from models import DATABASE, MessageResponse
 
 router = APIRouter()
 

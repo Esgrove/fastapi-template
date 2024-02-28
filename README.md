@@ -24,41 +24,39 @@ Update dependencies:
 poetry update
 ```
 
-Adding dependencies:
-
-```shell
-poetry add fastapi uvicorn
-poetry add pytest --group test
-poetry add black isort ruff --group dev
-```
-
 ## Quick start
 
-Use the provided shell scripts to easily run tests and the API locally with Docker with `./test.sh` and `./run.sh`.
+Use the provided shell scripts to easily run unit tests and the API locally with Docker with the scripts:
+```shell
+./test.sh
+./run.sh
+```
 
 ## Tests
 
 Tests use pytest.
 
 ```shell
-poetry run pytest
+poetry run pytest -v
 ```
 
 Run tests with coverage report:
 
 ```shell
-poetry run pytest --cov=app tests/
+poetry run pytest -v --cov=app tests/
 ```
 
-## Running locally
+## Running server locally
 
-Start a development server locally with shortcut:
+Start a development server locally with a shortcut:
 
 ```shell
 poetry run start
+# with optional args
+poetry run start --port 3000 --log debug
 ```
 
-Or full command:
+Or full command with all available uvicorn args:
 
 ```shell
 poetry run uvicorn app.main:app --reload --host localhost --port 8000
@@ -66,7 +64,7 @@ poetry run uvicorn app.main:app --reload --host localhost --port 8000
 
 ### Using Docker
 
-Build Docker image and run container:
+Build Docker image and run container with the script:
 
 ```shell
 ./run.sh
@@ -81,12 +79,16 @@ docker run -d --name fastapi -p 80:80 runtime
 
 ### Test API locally
 
+With script with nice formatting:
+
 ```shell
 ./test-routes.sh
 ```
 
+Manually:
+
 ```shell
-curl -s http://127.0.0.1:8000 | jq .
+curl -s http://127.0.0.1:8000/ | jq .
 curl -s http://127.0.0.1:8000/items/1234 | jq .
 curl -s http://127.0.0.1:8000/items/ | jq .
 curl -s http://127.0.0.1:8000/items/?limit=8 | jq .

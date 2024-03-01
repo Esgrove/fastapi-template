@@ -87,6 +87,7 @@ fi
 get "http://127.0.0.1:$PORT"
 get "http://127.0.0.1:$PORT/version/"
 get "http://127.0.0.1:$PORT/items/"
+get "http://127.0.0.1:$PORT/keys/"
 get "http://127.0.0.1:$PORT/items/?skip=3&limit=3"
 get "http://127.0.0.1:$PORT/items/1234"
 get "http://127.0.0.1:$PORT/items/1"
@@ -108,3 +109,15 @@ get "http://127.0.0.1:$PORT/items/"
 delete "http://127.0.0.1:$PORT/admin/clear_items/"
 
 get "http://127.0.0.1:$PORT/items/"
+
+post "http://127.0.0.1:$PORT/items/bulk/" '[{"name":"a","item_id":1000},{"name":"b","item_id":2222},{"name":"c","item_id":3000}]'
+post "http://127.0.0.1:$PORT/items/bulk/" '[{"name":"d","item_id":1000},{"name":"b","item_id":5000},{"name":"e","item_id":4000}]'
+
+get "http://127.0.0.1:$PORT/items/"
+
+delete "http://127.0.0.1:$PORT/admin/items/name/b"
+delete "http://127.0.0.1:$PORT/admin/items/name/d"
+
+get "http://127.0.0.1:$PORT/items/"
+
+get "http://127.0.0.1:$PORT/exception/"

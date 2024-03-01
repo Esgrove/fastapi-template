@@ -12,7 +12,9 @@ except ModuleNotFoundError:
 API_NAME = "FastAPI example"
 
 
-class ApiError(Exception):
+class ServerError(Exception):
+    """Server-side exception."""
+
     def __init__(self, name: str):
         self.name = name
 

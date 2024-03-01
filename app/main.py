@@ -4,17 +4,20 @@ Akseli Lukkarila
 2019-2024
 """
 
+import traceback
+
 import click
 import uvicorn
-from fastapi import FastAPI
+from fastapi import FastAPI, status
+from fastapi.responses import JSONResponse
 
 try:
     from app.admin import router as admin_router
-    from app.models import DATABASE, Item
+    from app.models import DATABASE, Item, ServerError
     from app.routes import router
 except ModuleNotFoundError:
     from admin import router as admin_router
-    from models import DATABASE, Item
+    from models import DATABASE, Item, ServerError
     from routes import router
 
 
@@ -47,6 +50,16 @@ init_db()
 app = FastAPI()
 app.include_router(router)
 app.include_router(admin_router, prefix="/admin")
+
+
+# Define an exception handler for custom exception
+@app.exception_handler(ServerError)
+async def server_error_exception_handler(request, exc):
+    stack_trace = traceback.format_exc(limit=1)
+    return JSONResponse(
+        status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+        content={"message": f"Server error: {exc.name}", "stack_trace": stack_trace},
+    )
 
 
 # Mangum is an adapter for running ASGI applications in AWS Lambda

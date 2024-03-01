@@ -12,23 +12,6 @@ except ModuleNotFoundError:
 API_NAME = "FastAPI example"
 
 
-class MessageResponse(BaseModel):
-    """Simple return message."""
-
-    message: str
-
-    @classmethod
-    def new(cls, message: str) -> Self:
-        """
-        A bit of Rust inspiration in Python:
-        Factory method to create a `MessageResponse`,
-        without needing to specify the `message` parameter name.
-        So instead of `MessageResponse(message=message)`,
-        one can use `MessageResponse.new(message)`
-        """
-        return cls(message=message)
-
-
 class ApiError(Exception):
     def __init__(self, name: str):
         self.name = name
@@ -48,6 +31,23 @@ class Item(BaseModel):
         super().__init__(**data)
 
 
+class MessageResponse(BaseModel):
+    """Simple return message."""
+
+    message: str
+
+    @classmethod
+    def new(cls, message: str) -> Self:
+        """
+        A bit of Rust inspiration in Python:
+        Factory method to create a `MessageResponse`,
+        without needing to specify the `message` parameter name.
+        So instead of `MessageResponse(message=message)`,
+        one can use `MessageResponse.new(message)`
+        """
+        return cls(message=message)
+
+
 class VersionInfo(BaseModel):
     """Version information message."""
 
@@ -58,11 +58,11 @@ class VersionInfo(BaseModel):
     version: str = VERSION_NUMBER
 
 
-# Simulated database
-DATABASE: dict[int, Item] = {}
-
-
 def message_response(status_code: int, message: str) -> JSONResponse:
     """Helper function to create a JSONResponse with a MessageResponse model."""
-    response_content = MessageResponse(message=message).dict()
-    return JSONResponse(status_code=status_code, content=response_content)
+    response = MessageResponse(message=message)
+    return JSONResponse(status_code=status_code, content=response.dict())
+
+
+# Simulated database
+DATABASE: dict[int, Item] = {}

@@ -1,5 +1,5 @@
 """
-FastAPI template and example.
+FastAPI REST example.
 Akseli Lukkarila
 2019-2024
 """

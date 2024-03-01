@@ -17,7 +17,7 @@ async def favicon() -> FileResponse:
     Provide favicon.
     Not really needed but here to silence a warning.
     """
-    return FileResponse("favicon.ico")
+    return FileResponse("../favicon.ico")
 
 
 @router.get("/")

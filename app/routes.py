@@ -74,7 +74,9 @@ async def create_item(item: Item):
     if item.item_id in DATABASE:
         # Using `message_response` would simplify creating the JSONResponse,
         # but leaving this here to show it directly.
-        return JSONResponse(status_code=409, content=MessageResponse(message="Item with this ID already exists").dict())
+        return JSONResponse(
+            status_code=409, content=MessageResponse(message="Item with this ID already exists").model_dump()
+        )
 
     DATABASE[item.item_id] = item
     return item

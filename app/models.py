@@ -61,7 +61,7 @@ class VersionInfo(BaseModel):
 def message_response(status_code: int, message: str) -> JSONResponse:
     """Helper function to create a JSONResponse with a MessageResponse model."""
     response = MessageResponse(message=message)
-    return JSONResponse(status_code=status_code, content=response.dict())
+    return JSONResponse(status_code=status_code, content=response.model_dump())
 
 
 # Simulated database

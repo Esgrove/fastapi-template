@@ -1,6 +1,5 @@
 # FastAPI template
 
-[![Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 
 [FastAPI](https://github.com/tiangolo/fastapi) REST API project template and example.
@@ -28,6 +27,7 @@ poetry update
 ## Quick start
 
 Use the provided shell scripts to easily run unit tests and the API locally with Docker with the scripts:
+
 ```shell
 ./test.sh
 ./run.sh
@@ -107,9 +107,8 @@ which is used to render the documentation:
 
 ## Code formatting and linting
 
-Code formatting with [Black](https://github.com/psf/black).
+Code formatting and linting with [ruff](https://github.com/charliermarsh/ruff).
 Import sorting with [isort](https://github.com/PyCQA/isort).
-Linting with [ruff](https://github.com/charliermarsh/ruff).
 
 These are configured with a custom line length limit of 120.
 The configs can be found in [pyproject.toml](./pyproject.toml).
@@ -117,19 +116,10 @@ The configs can be found in [pyproject.toml](./pyproject.toml).
 Usage:
 
 ```shell
-black .
 isort .
+ruff format .
 ruff --fix .
 ```
-
-These can also be integrated to IDEs / editors or run as a pre-commit hook.
-See the documentation for Black [here](https://black.readthedocs.io/en/stable/integrations/editors.html).
-Visual Studio Code has built-in support for
-[Black](https://marketplace.visualstudio.com/items?itemName=ms-python.black-formatter)
-and
-[isort](https://marketplace.visualstudio.com/items?itemName=ms-python.isort)
-through official plugins.
-There is also a [Ruff extension](https://github.com/charliermarsh/ruff-vscode) for VS Code.
 
 Using with [pre-commit](https://pre-commit.com/):
 

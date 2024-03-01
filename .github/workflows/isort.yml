@@ -1,10 +1,8 @@
 name: Python isort
 
-# Run either when pushing directly to main/master or in a PR targeting main/master
 on:
   push:
     branches:
-      - master
       - main
     paths:
       - "**.py"
@@ -12,9 +10,6 @@ on:
       - "poetry.lock"
       - "pyproject.toml"
   pull_request:
-    branches:
-      - master
-      - main
     paths:
       - "**.py"
       - ".github/workflows/isort.yml"

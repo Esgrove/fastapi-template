@@ -1,23 +1,18 @@
 name: Python Ruff
 
-# Run either when pushing directly to main/master or in a PR targeting main/master
 on:
   push:
     branches:
-      - master
       - main
     paths:
-      - "**.py"
       - ".github/workflows/ruff.yml"
+      - "**.py"
       - "poetry.lock"
       - "pyproject.toml"
   pull_request:
-    branches:
-      - master
-      - main
     paths:
-      - "**.py"
       - ".github/workflows/ruff.yml"
+      - "**.py"
       - "poetry.lock"
       - "pyproject.toml"
 
@@ -38,3 +33,8 @@ jobs:
         uses: chartboost/ruff-action@v1
         with:
           args: check --verbose
+
+      - name: Ruff format
+        uses: chartboost/ruff-action@v1
+        with:
+          args: format --check --verbose

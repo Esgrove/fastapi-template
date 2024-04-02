@@ -12,7 +12,7 @@ click = "^8.1.7"
 fastapi = { version = "^0.110.0", extras = ["all"] }
 mangum = "^0.17.0"
 pydantic = "^2.6.2"
-uvicorn = "^0.27.0"
+uvicorn = "^0.29.0"
 
 [tool.poetry.group.test.dependencies]
 pytest = "^8.0.0"

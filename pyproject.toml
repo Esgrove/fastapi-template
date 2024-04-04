@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "fastapi-example"
-version = "1.4.0"
+version = "1.4.1"
 description = "FastAPI project template and example."
 authors = ["Akseli Lukkarila <akseli.lukkarila@nitor.com>"]
 readme = "README.md"

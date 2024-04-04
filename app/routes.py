@@ -111,7 +111,7 @@ async def create_items(items: list[Item]):
         else:
             DATABASE[item.item_id] = item
     if conflict_items:
-        return message_response(409, f"Items already exist: {','.join(i.item_id for i in conflict_items)}")
+        return message_response(409, f"Items already exist: {','.join(str(i.item_id) for i in conflict_items)}")
 
     return items
 

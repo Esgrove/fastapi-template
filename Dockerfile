@@ -2,7 +2,7 @@
 # https://docs.docker.com/engine/reference/builder/
 
 # Base Python image
-FROM python:3.11-bullseye as python
+FROM python:3.12-bullseye as python
 ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
     PIP_NO_CACHE_DIR=off \
@@ -11,7 +11,7 @@ ENV PYTHONUNBUFFERED=1 \
     POETRY_HOME="/opt/poetry" \
     POETRY_VIRTUALENVS_IN_PROJECT=true \
     POETRY_NO_INTERACTION=1 \
-    POETRY_VERSION=1.8.1 \
+    POETRY_VERSION=1.8.2 \
     PATH="/opt/poetry/bin:$PATH"
 
 WORKDIR /fastapi_app

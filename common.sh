@@ -80,7 +80,7 @@ run_command() {
 # Read Python project version number from pyproject.toml
 get_pyproject_version_number() {
     # note: `tomllib` requires Python 3.11+
-    python -c 'with open("pyproject.toml", "rb") as f: \
+    python3 -c 'with open("pyproject.toml", "rb") as f: \
                 import tomllib; \
                 project = tomllib.load(f); \
                 print(project["tool"]["poetry"]["version"])'

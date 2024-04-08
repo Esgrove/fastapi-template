@@ -5,18 +5,17 @@ on:
     branches:
       - main
     paths:
-      - "**.py"
       - ".github/workflows/isort.yml"
+      - "**.py"
       - "poetry.lock"
       - "pyproject.toml"
   pull_request:
     paths:
-      - "**.py"
       - ".github/workflows/isort.yml"
+      - "**.py"
       - "poetry.lock"
       - "pyproject.toml"
 
-# https://github.com/marketplace/actions/python-isort
 jobs:
   format:
     runs-on: ubuntu-latest

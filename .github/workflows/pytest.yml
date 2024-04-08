@@ -5,16 +5,16 @@ on:
     branches:
       - main
     paths:
-      - "**.py"
-      - "pyproject.toml"
-      - "poetry.lock"
       - ".github/workflows/pytest.yml"
+      - "**.py"
+      - "poetry.lock"
+      - "pyproject.toml"
   pull_request:
     paths:
-      - "**.py"
-      - "pyproject.toml"
-      - "poetry.lock"
       - ".github/workflows/pytest.yml"
+      - "**.py"
+      - "poetry.lock"
+      - "pyproject.toml"
 
 jobs:
   test:

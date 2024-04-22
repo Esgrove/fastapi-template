@@ -26,10 +26,10 @@ fi
 if [ -z "$(docker ps -q --filter "name=fastapi")" ]; then
     print_magenta "Building Docker image..."
     update_version_information
-    docker build -t runtime .
+    docker build --tag runtime --file Dockerfile .
 
     print_magenta "Running API..."
-    docker run -d --name fastapi -p 80:80 runtime
+    docker run --detach --name fastapi --publish 80:80 runtime
 
     echo "Waiting for container to start..."
     while ! curl -fs http://127.0.0.1 > /dev/null; do

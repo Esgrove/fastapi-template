@@ -11,7 +11,7 @@ python = "^3.11"
 click = "^8.1.7"
 fastapi = { version = "^0.111.0", extras = ["all"] }
 mangum = "^0.17.0"
-pydantic = "^2.6.2"
+pydantic = "^2.7.3"
 uvicorn = "^0.29.0"
 
 [tool.poetry.group.test.dependencies]

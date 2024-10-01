@@ -8,6 +8,7 @@ import traceback
 
 import click
 import uvicorn
+
 from fastapi import FastAPI, status
 from fastapi.responses import JSONResponse
 

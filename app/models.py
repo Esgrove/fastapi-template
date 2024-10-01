@@ -1,4 +1,5 @@
 import random
+
 from typing import Self
 
 from fastapi.responses import JSONResponse

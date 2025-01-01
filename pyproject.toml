@@ -21,7 +21,7 @@ coverage = "^7.6.10"
 pytest-cov = "^6.0.0"
 
 [tool.poetry.group.dev.dependencies]
-ruff = "^0.8.1"
+ruff = "^0.8.4"
 isort = "^5.13.2"
 
 [tool.poetry.scripts]

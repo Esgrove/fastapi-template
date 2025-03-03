@@ -21,7 +21,7 @@ coverage = "^7.6.12"
 pytest-cov = "^6.0.0"
 
 [tool.poetry.group.dev.dependencies]
-ruff = "^0.9.4"
+ruff = "^0.9.9"
 
 [tool.poetry.scripts]
 start = "app.main:start"

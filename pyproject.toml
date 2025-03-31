@@ -17,7 +17,7 @@ uvicorn = "^0.34.0"
 [tool.poetry.group.test.dependencies]
 pytest = "^8.3.4"
 httpx = "^0.28.1"
-coverage = "^7.6.12"
+coverage = "^7.8.0"
 pytest-cov = "^6.0.0"
 
 [tool.poetry.group.dev.dependencies]

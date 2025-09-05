@@ -17,11 +17,11 @@ uvicorn = "^0.35.0"
 [tool.poetry.group.test.dependencies]
 pytest = "^8.4.1"
 httpx = "^0.28.1"
-coverage = "^7.10.5"
+coverage = "^7.10.6"
 pytest-cov = "^6.2.1"
 
 [tool.poetry.group.dev.dependencies]
-ruff = "^0.12.10"
+ruff = "^0.12.11"
 
 [tool.poetry.scripts]
 start = "app.main:start"

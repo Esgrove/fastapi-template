@@ -9,9 +9,9 @@ packages = [{ include = "app" }]
 [tool.poetry.dependencies]
 python = "^3.11"
 click = "^8.3.0"
-fastapi = { version = "^0.118.0", extras = ["all"] }
+fastapi = { version = "^0.119.0", extras = ["all"] }
 mangum = "^0.19.0"
-pydantic = "^2.11.10"
+pydantic = "^2.12.0"
 uvicorn = "^0.37.0"
 
 [tool.poetry.group.test.dependencies]
@@ -21,7 +21,7 @@ coverage = "^7.10.7"
 pytest-cov = "^7.0.0"
 
 [tool.poetry.group.dev.dependencies]
-ruff = "^0.13.3"
+ruff = "^0.14.0"
 
 [tool.poetry.scripts]
 start = "app.main:start"

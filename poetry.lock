@@ -1653,7 +1653,7 @@ files = [
     {file = "typing_extensions-4.15.0-py3-none-any.whl", hash = "sha256:f0fa19c6845758ab08074a0cfa8b7aecb71c999ca73d62883bc25cc018c4e548"},
     {file = "typing_extensions-4.15.0.tar.gz", hash = "sha256:0cea48d173cc12fa28ecabc3b837ea3cf6f38c6d1136f85cbaaf598984861466"},
 ]
-markers = {test = "python_version < \"3.13\""}
+markers = {test = "python_version == \"3.12\""}
 
 [[package]]
 name = "typing-inspection"
@@ -2076,5 +2076,5 @@ files = [
 
 [metadata]
 lock-version = "2.1"
-python-versions = "^3.11"
-content-hash = "cb27b72253f7a4dc8c181f98632b9aac9eca0e6e294c676a6f5330c8d3b66b9f"
+python-versions = "^3.12"
+content-hash = "ab3e118f9b2dc048fd4b46ee4c98752cf7e269c70c6139e8aeea2f71002ed108"

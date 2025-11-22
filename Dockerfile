@@ -2,7 +2,7 @@
 # https://docs.docker.com/engine/reference/builder/
 
 # Base Python image
-FROM python:3.12-bullseye as python
+FROM python:3.14-bullseye as python
 ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
     PIP_NO_CACHE_DIR=off \

@@ -2,7 +2,7 @@
 # https://docs.docker.com/engine/reference/builder/
 
 # Base Python image
-FROM python:3.14-bullseye as python
+FROM python:3.14 as python
 ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
     PIP_NO_CACHE_DIR=off \
@@ -43,5 +43,4 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
 # https://fastapi.tiangolo.com/deployment/docker/
 # CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80", "--proxy-headers"]
 
-HEALTHCHECK --interval=1m --timeout=3s \
-    CMD curl -fs http://localhost/ || exit 1
+HEALTHCHECK --interval=1m --timeout=3s CMD curl -fs http://localhost/ || exit 1

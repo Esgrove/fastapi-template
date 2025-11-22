@@ -17,12 +17,20 @@ repos:
       - id: mixed-line-ending
       - id: trailing-whitespace
 
-  - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.14.5
+  - repo: local
     hooks:
-      - id: ruff
-        name: python ruff lint
-        args: [--fix, --exit-non-zero-on-fix]
-      - id: ruff-format
-        name: python ruff format
-        args: [--check]
+      - id: format
+        name: Ruff format
+        description: Run Ruff format on files included in the commit.
+        entry: uv run ruff format
+        pass_filenames: false
+        types: [file, python]
+        language: system
+
+      - id: lint
+        name: Ruff lint
+        description: Run Ruff lint on files included in the commit.
+        entry: uv run ruff check --fix
+        pass_filenames: false
+        types: [file, python]
+        language: system

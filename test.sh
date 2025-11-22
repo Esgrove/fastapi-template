@@ -10,4 +10,4 @@ source "$DIR/common.sh"
 
 cd "$REPO_ROOT" > /dev/null
 print_magenta "Running tests..."
-poetry run pytest --cov=app tests/ -v
+uv run pytest --verbose --cov=app tests/

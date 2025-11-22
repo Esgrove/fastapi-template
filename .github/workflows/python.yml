@@ -1,0 +1,48 @@
+name: Python
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "python.yml"
+      - "**.py"
+      - "uv.lock"
+      - "pyproject.toml"
+  pull_request:
+    paths:
+      - "python.yml"
+      - "**.py"
+      - "uv.lock"
+      - "pyproject.toml"
+
+jobs:
+  check:
+    name: Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+
+      - name: Set up Python environment
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.x"
+
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          version: "latest"
+          working-directory: python
+
+      - name: Sync dependencies
+        run: uv sync --all-groups --frozen
+
+      - name: Ruff format
+        run: uv run ruff format --check
+
+      - name: Ruff lint
+        run: uv run ruff check --diff
+
+      - name: Run tests
+        run: uv run pytest --verbose --cov=app tests

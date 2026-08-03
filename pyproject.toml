@@ -9,10 +9,10 @@ packages = [{ include = "app" }]
 [tool.poetry.dependencies]
 python = "^3.12"
 click = "^8.3.2"
-fastapi = { version = ">=0.135.3,<0.141.0", extras = ["all"] }
+fastapi = { version = ">=0.135.3,<0.142.0", extras = ["all"] }
 mangum = "^0.21.0"
 pydantic = "^2.13.0"
-uvicorn = ">=0.44,<0.52"
+uvicorn = ">=0.44,<0.53"
 
 [tool.poetry.group.test.dependencies]
 pytest = "^9.0.3"
